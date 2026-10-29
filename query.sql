@@ -3,6 +3,7 @@ DROP TABLE IF EXISTS WISHLIST;
 DELETE FROM USER WHERE user_id = 9001;
 
 -- DDL
+SHOW TABLES;
 select * from user;
 select * from follows;
 select * from game;
@@ -10,6 +11,9 @@ select * from review;
 select * from platform;
 select * from achievement;
 select * from genre;
+select * from unlocks;
+select * from available_on;
+select * from belongs_to;
 
 -- Create
 CREATE TABLE WISHLIST (
@@ -19,8 +23,7 @@ CREATE TABLE WISHLIST (
     added_date DATE,
     primary key (user_id, game_id),
     FOREIGN KEY (user_id) references USER(user_id),
-    FOREIGN KEY (game_id) references GAME(game_id),
-    CONSTRAINT chk_priority CHECK (priority BETWEEN 1 AND 5)
+    FOREIGN KEY (game_id) references GAME(game_id)
 );
 select * from WISHLIST;
 
@@ -29,8 +32,6 @@ ALTER TABLE GAME ADD COLUMN price DECIMAL(6,2) DEFAULT 59.99;
 select * from GAME;
 ALTER TABLE GAME DROP COLUMN price;
 select * from GAME;
-
--- DML
 
 -- Insert
 INSERT INTO USER (user_id, username, email, join_date)
